@@ -1,0 +1,89 @@
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=25565/tcp
+- name: Allow mc udp
+  command: firewall-cmd --zone=public --permanent  --add-port=25565/udp  
+- name: Allow mc tcp dynmap
+  command: firewall-cmd --zone=public --permanent --add-port=8123/tcp  
+  
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=25566/tcp
+  when: "'app08' in inventory_hostname_short"
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=8192/tcp
+  when: "'vps05' in inventory_hostname_short"
+- name: Allow mc udp
+  command: firewall-cmd --zone=public --permanent  --add-port=25566/udp
+  when: "'app08' in inventory_hostname_short"  
+  
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=25575/tcp
+  when: "'vps01' in inventory_hostname_short"
+- name: Allow mc udp
+  command: firewall-cmd --zone=public --permanent  --add-port=25575/udp
+  when: "'vps01' in inventory_hostname_short"
+- name: Allow mc stats survival
+  command: firewall-cmd --zone=public --permanent  --add-port=8803/tcp 
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=25585/tcp
+  when: "'vps01' in inventory_hostname_short"
+- name: Allow mc udp
+  command: firewall-cmd --zone=public --permanent  --add-port=25585/udp
+  when: "'vps01' in inventory_hostname_short"
+- name: Allow czechcraft tcp
+  command: firewall-cmd --zone=public --permanent  --add-port=8192/tcp
+  when: "'vps01' in inventory_hostname_short" 
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=25560-25590/tcp
+  when: "'app02' in inventory_hostname_short" 
+- name: Allow mc udp
+  command: firewall-cmd --zone=public --permanent  --add-port=25560-25590/udp
+  when: "'app02' in inventory_hostname_short" 
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=25560-25590/tcp
+  when: "'app02' in inventory_hostname_short" 
+- name: Allow mc udp
+  command: firewall-cmd --zone=public --permanent  --add-port=25560-25590/udp
+  when: "'app02' in inventory_hostname_short" 
+
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=25400-25590/tcp
+  when: "'app10' in inventory_hostname_short" 
+- name: Allow mc udp
+  command: firewall-cmd --zone=public --permanent  --add-port=25400-25590/udp
+  when: "'app10' in inventory_hostname_short"   
+  
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=25560-25590/tcp
+  when: "'app03' in inventory_hostname_short" 
+- name: Allow mc udp
+  command: firewall-cmd --zone=public --permanent  --add-port=25560-25590/udp
+  when: "'app03' in inventory_hostname_short" 
+  
+  
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=25560-25590/tcp
+  when: "'app04' in inventory_hostname_short" 
+- name: Allow mc udp
+  command: firewall-cmd --zone=public --permanent  --add-port=25560-25590/udp
+  when: "'app04' in inventory_hostname_short"  
+   
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=25460-25490/tcp
+  when: "'vps02' in inventory_hostname_short" 
+- name: Allow mc udp
+  command: firewall-cmd --zone=public --permanent  --add-port=25460-25490/udp
+  when: "'vps02' in inventory_hostname_short"   
+   
+- name: Allow mc tcp
+  command: firewall-cmd --zone=public --permanent --add-port=25566/tcp
+  when: "'vps03' in inventory_hostname_short" 
+- name: Allow mc udp
+  command: firewall-cmd --zone=public --permanent  --add-port=25566/udp  
+  when: "'vps03' in inventory_hostname_short" 
+
+   
+   
+- name: Bounce firewalld
+  service: name=firewalld state=restarted
+  when: "'con01' not in inventory_hostname_short"
+ 
